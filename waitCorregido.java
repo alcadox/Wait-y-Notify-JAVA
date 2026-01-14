@@ -18,7 +18,7 @@ public class waitCorregido {
 
                 if (i == 5) {
                     try {
-                        // Esperamos a que metodo2 haga notifyAll
+                        // esperamos a que metodo2 haga notifyAll
                         while (!metodo1Terminado) {
                             wait();
                         }
@@ -27,11 +27,10 @@ public class waitCorregido {
                     }
                 }
             }
-            System.out.println(Thread.currentThread().getName() + ": Fin de metodo1");
         }
 
         public synchronized void metodo2() {
-            // Esperamos a que metodo1 haya empezado
+            // esperamos a que metodo1 haya empezado
             while (!metodo1Ejecutando) {
                 try {
                     wait();
@@ -47,7 +46,6 @@ public class waitCorregido {
             // Avisamos a metodo1 que puede continuar
             metodo1Terminado = true;
             notifyAll();
-            System.out.println(Thread.currentThread().getName() + ": Fin de metodo2");
         }
 
         @Override
